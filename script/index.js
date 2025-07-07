@@ -7,8 +7,7 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 const welcomeTitle = document.querySelector('.welcome-title');
 
 if(!currentUser){
-  const loc = window.location.origin + '/Diary/login.html' 
-  window.location.href = loc;
+  window.location.href = '../login.html';
 }
 
 if (currentUser && welcomeTitle) {

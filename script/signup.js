@@ -7,12 +7,9 @@ document.querySelector('.submit-button')
     const inputName = document.querySelector('.js-name-input').value;
     const inputUsername = document.querySelector('.js-username-input').value;
     const inputPassword = document.querySelector('.js-password-input').value;
-    const inputPasswordLength = inputPassword.length;
+    // const inputPasswordLength = inputPassword.length;
     const inputConfirmPassword = document.querySelector('.js-confirm-password-input').value;
 
-    console.log(inputPasswordLength);
-
-    
 
     if (inputName === '' || inputUsername === '' || inputPassword === '' || inputConfirmPassword === ''){
       Swal.fire({
@@ -43,8 +40,7 @@ document.querySelector('.submit-button')
           icon: 'success'
         });
         setTimeout(() => {
-          const loc = window.location.origin + '/Diary/login.html';
-          window.location.href = loc;
+          window.location.href = '../login.html';
         }, 1000);
       } else {
           Swal.fire('Passwords do not match', 'error');
