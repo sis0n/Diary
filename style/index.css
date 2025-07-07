@@ -40,7 +40,7 @@ p { color: var(--secondary); }
 .hero p { margin-bottom:2rem; font-size:1.1rem; }
 .btn-primary {
   display:inline-block;
-  background: var(--btn-bg);
+  background: #4a90e2;
   color: var(--btn-text);
   padding:0.9rem 1.8rem;
   border-radius:2rem;
@@ -93,6 +93,63 @@ p { color: var(--secondary); }
 .btn-secondary:hover {
   background: var(--accent);
   color: var(--btn-text);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a90e2;
+  color: white;
+  padding: 16px 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logo {
+  font-size: 28px;
+  font-family: 'Cedarville Cursive', cursive;
+  color: white;
+  margin: 0;
+}
+
+/* Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.menu li a {
+  color: white;
+  font-weight: bold;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .menu li a {
+    display: block;
+    width: 100%;
+  }
 }
 
 /* Footer */
