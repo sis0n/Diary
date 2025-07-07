@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diary</title>
-  <link rel="stylesheet" href="./style/index.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Send the Song ➤ Express Your Untold Message</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="app-header">
-    <h1 class="header-title">Diary</h1>
-    <button class="logout-button">Logout</button>
+
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Send the Song</h1>
+      <ul class="menu">
+        <li><a href="#">Submit</a></li>
+        <li><a href="#">Browse</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="main-input">
-    <h2 class="welcome-title"></h2>
-    <input type="text" class="js-title-message-input" placeholder="Title of the entry" required>
-    <br>
-    <textarea class="js-message-input" placeholder="What's on your mind?" required></textarea>
-    <br>
-    <button class="submit-button">Submit</button>
-  </div>
+  <main>
+    <section class="hero">
+      <h2>Express your untold message through the song.</h2>
+      <p>Tell Your Story • Browse the Stories</p>
+      <a href="#" class="btn-primary">Share Your Message</a>
+    </section>
 
-  <div>
-    <p class="inputed-message"></p>
-  </div>
+    <section class="messages-grid">
+      <!-- Example card -->
+      <div class="card">
+        <p class="to">To: alexa</p>
+        <blockquote class="message">i know we promised no goodbyes, tapi kadang life really gets in the way ya</blockquote>
+        <img src="album.jpg" alt="All Too Well" class="album-art"/>
+        <p class="song-title">All Too Well (Taylor's Version)</p>
+        <p class="artist">Taylor Swift</p>
+        <button class="btn-secondary">Spotify</button>
+      </div>
+      <!-- Repeat .card for more messages -->
+    </section>
+  </main>
 
-  <script src="./script/index.js" type="module"></script>
+  <footer>
+    <p>&copy; 2025 Send the Song</p>
+  </footer>
+
 </body>
 </html>

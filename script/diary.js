@@ -1,4 +1,4 @@
-import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/diary.js';
 import { entry } from './data.js';
 
 
@@ -7,7 +7,8 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 const welcomeTitle = document.querySelector('.welcome-title');
 
 if(!currentUser){
-  window.location.href = '../login.html';
+  const loc = window.location.origin + '/Diary/login.html' 
+  window.location.href = loc;
 }
 
 if (currentUser && welcomeTitle) {
