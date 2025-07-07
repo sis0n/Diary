@@ -43,7 +43,8 @@ document.querySelector('.submit-button')
           icon: 'success'
         });
         setTimeout(() => {
-          window.location.origin = '/Diary/login.html';
+          const loc = window.location.origin = '/Diary/login.html';
+          window.location.href = loc;
         }, 1000);
       } else {
           Swal.fire('Passwords do not match', 'error');

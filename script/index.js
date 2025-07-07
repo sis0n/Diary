@@ -7,7 +7,8 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 const welcomeTitle = document.querySelector('.welcome-title');
 
 if(!currentUser){
-  window.location.origin + '/Diary/login.html' 
+  const loc = window.location.origin + '/Diary/login.html' 
+  window.location.href = loc;
 }
 
 if (currentUser && welcomeTitle) {
@@ -90,5 +91,6 @@ displayMessage();
 document.querySelector('.logout-button')
   .addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    window.location.origin + '/Diary/login.html'
+    const loc = window.location.origin + '/Diary/login.html'
+    window.location.href = loc;
   });
