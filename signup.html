@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account</title>
+  <link rel="stylesheet" href="/style/signup.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+  <div class="main-input">
+    <h2>Create Account</h2>
+    <form>
+      <input type="name" placeholder="Name" class="js-name-input" required />
+      <input type="username" placeholder="Username" class="js-username-input" required />
+      <input type="password" placeholder="Password" class="js-password-input" required />
+      <input type="password" placeholder="Confirm Password" class="js-confirm-password-input" required />
+
+      <button type="submit" class="submit-button">Register</button>
+    </form>
+
+    <div class="auth-link">
+      <p>Already have an account? <a href="login.html" class="create-account-link">Log In</a></p>
+    </div>
+  </div>
+
+  <script src="/script/signup.js" type="module"></script>
+
+</body>
+</html>

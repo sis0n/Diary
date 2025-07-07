@@ -1,0 +1,94 @@
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
+import { entry } from './data.js';
+
+
+const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+const welcomeTitle = document.querySelector('.welcome-title');
+  
+if (currentUser && welcomeTitle) {
+  welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+} else {
+  console.warn('User not found not found');
+}
+
+if(!currentUser){
+  window.location.href = '../login.html'; 
+}
+
+document.querySelector('.submit-button')
+  .addEventListener('click', () => {
+    const date = dayjs();
+    const currentDate = date.format('YYYY-MM-DD, HH:mm:ss');
+
+    const inputMessage = document.querySelector('.js-message-input');
+    const inputTitleMessage = document.querySelector('.js-title-message-input');
+    const messageText = inputMessage.value.trim();
+    const titleText = inputTitleMessage.value.trim();
+
+    if (messageText === '' || titleText === ''){
+      Swal.fire('you need to enter a message or a title message');
+      return;
+    } 
+      
+    const messageObject = {
+      id: entry.length + 1,
+      title: titleText,
+      username: currentUser.username,
+      name: currentUser.name,
+      message: messageText,
+      date: currentDate
+    };
+
+    entry.unshift(messageObject);
+
+    setTimeout(() => {
+      location.reload();
+      // displayMessage();
+    }, 1000);
+    
+    saveToStorage();
+
+    inputTitleMessage.value = '';
+    inputMessage.value = '';
+    
+  });
+
+function saveToStorage() {
+  localStorage.setItem('entry', JSON.stringify(entry));
+}
+
+function displayMessage() {
+  const inputedMessage = document.querySelector('.inputed-message');
+  inputedMessage.innerHTML = '';
+
+  let userHasMessage = false;
+
+  entry.forEach((messageObject) => {
+    if(messageObject.username === currentUser.username) {
+      userHasMessage = true;
+      inputedMessage.innerHTML += `
+        <div class="message-entry">
+          <h3 class="message-title">${messageObject.title}</h3>
+          <p class="main-message">${messageObject.message}</p>
+          <small>${messageObject.date}</small>
+        </div><hr>`;
+    }
+  });
+
+  if(!userHasMessage) {
+    inputedMessage.innerHTML = `
+      <div class="no-entry-message">
+        No messages yet. Be the first to write something
+      </div>
+    `;
+  }
+}
+
+displayMessage();
+
+document.querySelector('.logout-button')
+  .addEventListener('click', () => {
+    localStorage.removeItem('currentUser');
+    window.location.href = '../login.html';
+  });
