@@ -13,7 +13,7 @@ if (currentUser && welcomeTitle) {
 }
 
 if(!currentUser){
-  window.location.href = '../login.html'; 
+  window.location.origin + '/Diary/login.html' 
 }
 
 document.querySelector('.submit-button')
@@ -90,5 +90,5 @@ displayMessage();
 document.querySelector('.logout-button')
   .addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    window.location.href = '../login.html';
+    window.location.origin + '/Diary/login.html'
   });
