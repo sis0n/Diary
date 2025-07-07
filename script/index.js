@@ -13,7 +13,7 @@ if(!currentUser){
 if (currentUser && welcomeTitle) {
   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
 } else {
-  Swal.fire('User not found not found');
+  Swal.fire('user not found not found');
 }
 
 document.querySelector('.submit-button')
