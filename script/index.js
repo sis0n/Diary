@@ -5,15 +5,15 @@ import { entry } from './data.js';
 const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 const welcomeTitle = document.querySelector('.welcome-title');
-  
-if (currentUser && welcomeTitle) {
-  welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
-} else {
-  console.warn('User not found not found');
-}
 
 if(!currentUser){
   window.location.origin + '/Diary/login.html' 
+}
+
+if (currentUser && welcomeTitle) {
+  welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+} else {
+  Swal.fire('User not found not found');
 }
 
 document.querySelector('.submit-button')
