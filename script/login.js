@@ -47,7 +47,7 @@ document.querySelector('.submit-button')
       UserMessageEntries(foundUser);
       localStorage.setItem('currentUser', JSON.stringify(foundUser));
 
-      const loc = window.location.origin = '/Diary/index.html'; 
+      const loc = window.location.origin + '/Diary/index.html'; 
       window.location.href = loc;
   });
 

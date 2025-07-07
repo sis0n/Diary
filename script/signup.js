@@ -43,7 +43,7 @@ document.querySelector('.submit-button')
           icon: 'success'
         });
         setTimeout(() => {
-          const loc = window.location.origin = '/Diary/login.html';
+          const loc = window.location.origin + '/Diary/login.html';
           window.location.href = loc;
         }, 1000);
       } else {
