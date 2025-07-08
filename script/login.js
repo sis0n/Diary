@@ -1,29 +1,25 @@
 import { getUsers } from './user.js';
 import { UserMessageEntries } from './data.js';
 
-let foundUser = null;
-
 document.querySelector('.submit-button')
   .addEventListener('click', (event) => {
     event.preventDefault();
+
+    let matchedUser = null;
+    let foundUser = null;
 
     const inputUsername = document.querySelector('.js-name-input').value;
     const inputPass = document.querySelector('.js-password-input').value;
 
     const users = getUsers();
 
-    if(users.isAdmin === true){
-      Swal.fire('admin');
-    }
-
     users.forEach((user) => {
       if(user.username === inputUsername && user.password === inputPass){
         foundUser = user;
       }
     });
+    
     if(!foundUser) {
-      let matchedUser = null;
-
       users.forEach(user => {
         if (user.username === inputUsername) {
           matchedUser = user;
@@ -46,6 +42,23 @@ document.querySelector('.submit-button')
       return;
     }
 
+    if(foundUser.isAdmin) {
+      Swal.fire({
+        title: `Welcome Admin ${foundUser.name}`,
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    } else {
+      Swal.fire({
+        title: `Welcome, ${foundUser.name}`,
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false
+      });
+    }
+
+    setTimeout(() => {
       console.log(`Welcome, ${foundUser.name}`);
 
       UserMessageEntries(foundUser);
@@ -53,5 +66,6 @@ document.querySelector('.submit-button')
 
       const loc = window.location.origin  + '/Diary/diary.html'; 
       window.location.href = loc;
+    }, 1000);
   });
 

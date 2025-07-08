@@ -35,16 +35,23 @@ document.querySelector('.submit-button')
         
 
         Swal.fire({
-          title: 'CONGRATS !!',
-          text: 'Account created successfully!',
-          icon: 'success'
+          title: 'ACCOUNT CREATED !!',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
         });
+
         setTimeout(() => {
           const loc = window.location.origin + '/Diary/login.html';
           window.location.href = loc;
         }, 1000);
       } else {
-          Swal.fire('Passwords do not match', 'error');
+          Swal.fire({
+            title: 'PASSWORD DO NOT MATCH',
+            icon: 'warning',
+            timer: 1500,
+            showConfirmButton: false
+          });
         }
     }
   });
