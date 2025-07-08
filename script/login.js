@@ -12,6 +12,10 @@ document.querySelector('.submit-button')
 
     const users = getUsers();
 
+    if(users.isAdmin === true){
+      Swal.fire('admin');
+    }
+
     users.forEach((user) => {
       if(user.username === inputUsername && user.password === inputPass){
         foundUser = user;

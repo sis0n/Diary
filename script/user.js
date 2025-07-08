@@ -1,4 +1,9 @@
-export let users = JSON.parse(localStorage.getItem('user')) || [];
+export let users = JSON.parse(localStorage.getItem('user')) || [{
+  name: "alwyn",
+  username: "adrianoalwynm",
+  password: "keirauy",
+  isAdmin: true
+}];
 
 export function getUsers() {
   return users;
