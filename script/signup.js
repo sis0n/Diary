@@ -10,26 +10,16 @@ document.getElementById('signup-form')
     const confirmPassword = document.querySelector('.js-confirm-password-input').value;
 
     const alphaerr = 'must only contain letters !';
+    const lengtherr = 'must be between 1 and 10 letters'
 
     const nameLength = name.length;
     const usernameLength = username.length;
 
-    const hasNumber = /\d/.test(name);
 
     const users = getUsers();
     
     passwordValidation(password, confirmPassword);
-
-    if(hasNumber) {
-      Swal.fire({
-        title: 'ANO YAN!',
-        text: 'must only contain letters',
-        icon: 'warning'
-      });
-      return;
-    } 
     
-
     //validation for characters inputed
     if(nameLength <= 8 || usernameLength <= 8) {
       Swal.fire({
@@ -116,6 +106,30 @@ document.getElementById('signup-form')
       });
       return;
     }
+  }
+
+  function nameValidation(name) {
+
+    const hasNumber = /\d/.test(name);
+
+    if(hasNumber) {
+      Swal.fire({
+        title: 'ANO YAN!',
+        text: `${alphaerr}`,
+        icon: 'warning'
+      });
+      return;
+    } 
+
+    if (!name) {
+      Swal.fire({
+        title: 'Missing Fields',
+        text: 'All fields are required!',
+        icon: 'warning'
+      });
+      return;
+    }
+
   }
 
   
