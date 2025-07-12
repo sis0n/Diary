@@ -51,23 +51,23 @@ document.querySelector('.submit-button')
       });
 
       setTimeout(() => {
-      UserMessageEntries(foundUser);
-      localStorage.setItem('currentUser', JSON.stringify(foundUser));
+        UserMessageEntries(foundUser);
+        localStorage.setItem('currentUser', JSON.stringify(foundUser));
 
-      const loc = window.location.origin + '/Diary/admin.html';
-      window.location.href = loc;
-    }, 1600);
-    } else {
-      Swal.fire({
-        title: `Welcome, ${foundUser.name}`,
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false
-      });
+        const loc = window.location.origin + '/Diary/admin.html';
+        window.location.href = loc;
+      }, 1600);
+      return;      
     }
 
+    Swal.fire({
+      title: `Welcome, ${foundUser.name}`,
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false
+    });
+
     setTimeout(() => {
-      console.log(`Welcome, ${foundUser.name}`);
 
       UserMessageEntries(foundUser);
       localStorage.setItem('currentUser', JSON.stringify(foundUser));
