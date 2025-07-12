@@ -12,7 +12,6 @@ document.getElementById('signup-form')
     const alphaerr = 'must only contain letters !';
     const lengtherr = 'must be between 1 and 10 letters'
 
-    const nameLength = name.length;
     const usernameLength = username.length;
 
 
@@ -109,7 +108,7 @@ document.getElementById('signup-form')
   }
 
   function nameValidation(name) {
-
+    const nameLength = name.length;
     const hasNumber = /\d/.test(name);
 
     if(hasNumber) {
@@ -125,6 +124,15 @@ document.getElementById('signup-form')
       Swal.fire({
         title: 'Missing Fields',
         text: 'All fields are required!',
+        icon: 'warning'
+      });
+      return;
+    }
+
+    if(nameLength <= 10) {
+      Swal.fire({
+        title: 'too short',
+        text: 'must be between 1 and 10 letters',
         icon: 'warning'
       });
       return;
