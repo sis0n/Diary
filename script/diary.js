@@ -6,8 +6,16 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 const welcomeTitle = document.querySelector('.welcome-title');
 
-if(currentUser.isAdmin){
-  console.log('hi');
+const adminControls = document.querySelector('.admin-controls');
+
+if (currentUser && currentUser.isAdmin && adminControls) {
+  const adminBtn = document.createElement('button');
+  adminBtn.classList.add('admin-button');
+  adminBtn.textContent = 'Manage Users';
+  adminBtn.addEventListener('click', () => {
+    window.location.href = './admin.html'; // or wherever your admin page is
+  });
+  adminControls.appendChild(adminBtn);
 }
 
 if(!currentUser){
