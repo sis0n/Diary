@@ -20,10 +20,10 @@ document.getElementById('signup-form')
     passwordValidation(password, confirmPassword);
     
     //validation for characters inputed
-    if(nameLength <= 8 || usernameLength <= 8) {
+    if(usernameLength <= 8) {
       Swal.fire({
         title: 'too short',
-        text: 'the name, username, and password should be 8 char and above',
+        text: 'username should be 8 char and above',
         icon: 'warning'
       });
       return;
@@ -64,7 +64,7 @@ document.getElementById('signup-form')
 
     // validation for all passed created user
     const newUser = {
-      id: users.length + 1,
+      id: crypto.randomUUID(),
       name,
       username,
       password,
@@ -82,7 +82,7 @@ document.getElementById('signup-form')
     });
 
     setTimeout(() => {
-      const loc = window.location.origin  + '/Diary/login.html'; 
+      const loc = window.location.origin  + '/login.html'; 
       window.location.href = loc;
     }, 1600);
   });
@@ -97,14 +97,14 @@ document.getElementById('signup-form')
       return;
     }
 
-    if(password === password.toLowerCase()){
-      Swal.fire({
-        title: 'Password error',
-        text: 'pass',
-        icon: 'warning'
-      });
-      return;
-    }
+    // if(password === password.toLowerCase()){
+    //   Swal.fire({
+    //     title: 'Password error',
+    //     text: 'pass',
+    //     icon: 'warning'
+    //   });
+    //   return;
+    // }
   }
 
   function nameValidation(name) {

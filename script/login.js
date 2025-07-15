@@ -54,7 +54,7 @@ document.querySelector('.submit-button')
         UserMessageEntries(foundUser);
         localStorage.setItem('currentUser', JSON.stringify(foundUser));
 
-        const loc = window.location.origin + '/Diary/admin.html';
+        const loc = window.location.origin  + '/admin.html'; 
         window.location.href = loc;
       }, 1600);
       return;      
@@ -72,7 +72,7 @@ document.querySelector('.submit-button')
       UserMessageEntries(foundUser);
       localStorage.setItem('currentUser', JSON.stringify(foundUser));
 
-      const loc = window.location.origin  + '/Diary/diary.html'; 
+      const loc = window.location.origin  + '/diary.html'; 
       window.location.href = loc;
     }, 1000);
   });

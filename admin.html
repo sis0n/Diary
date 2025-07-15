@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>User Table</title>
   <link rel="stylesheet" href="./style/admin.css">
 </head>
 <body>
-  <h1>try lang</h1>
+
+  <nav>
+    <div class="nav-left">
+      <a href="/diary.html">Diary</a>
+    </div>
+    <div class="nav-right">
+      <button class="logout-button">Logout</button>
+    </div>
+  </nav>
+
+  <h1>User Table</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Entry</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody class="user-table"></tbody>
+  </table>
+
   <script type="module" src="./admin/admin.js"></script>
+
 </body>
 </html>

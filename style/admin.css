@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .nav-left a,
+nav .nav-right button {
+  color: white;
+  text-decoration: none;
+  margin-right: 15px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+nav .nav-right button:hover,
+nav .nav-left a:hover {
+  text-decoration: underline;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+th {
+  background-color: #f4f4f4;
+}
+.actions button {
+  margin-right: 5px;
+  padding: 5px 10px;
+}

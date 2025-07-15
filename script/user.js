@@ -1,5 +1,6 @@
 export let users = Array.isArray(JSON.parse(localStorage.getItem('user'))) ? JSON.parse(localStorage.getItem('user'))
   : [{
+      id: crypto.randomUUID(),
       name: "alwyn",
       username: "adrianoalwyn",
       password: "keirauy",

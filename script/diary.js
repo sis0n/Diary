@@ -6,8 +6,12 @@ const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 const welcomeTitle = document.querySelector('.welcome-title');
 
+if(currentUser.isAdmin){
+  console.log('hi');
+}
+
 if(!currentUser){
-  const loc = window.location.origin + '/Diary/login.html' 
+  const loc = window.location.origin + '/login.html' 
   window.location.href = loc;
 }
 
@@ -91,6 +95,6 @@ displayMessage();
 document.querySelector('.logout-button')
   .addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    const loc = window.location.origin + '/Diary/login.html'
+    const loc = window.location.origin + '/login.html'
     window.location.href = loc;
   });
