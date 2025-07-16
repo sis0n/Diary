@@ -42,6 +42,7 @@ document.querySelector('.submit-button')
       
     const messageObject = {
       id: crypto.randomUUID(),
+      userId: currentUser.id,
       title: titleText,
       username: currentUser.username,
       name: currentUser.name,

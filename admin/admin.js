@@ -8,7 +8,7 @@ const users = getUsers();
 console.log('loaded users: ', users);
 
 function countUserEntries(username) {
-  return entry.filter(user => user.username === username).length;
+  return entry.filter(e => e.username === username).length;
 }
 
 users.forEach((user) => {
