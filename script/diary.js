@@ -1,8 +1,8 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { entry } from './data.js';
+import { currentUser } from './auth.js';
 
 
-const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 const welcomeTitle = document.querySelector('.welcome-title');
 
@@ -13,20 +13,16 @@ if (currentUser && currentUser.isAdmin && adminControls) {
   adminBtn.classList.add('admin-button');
   adminBtn.textContent = 'Manage Users';
   adminBtn.addEventListener('click', () => {
-    window.location.href = './admin.html'; // or wherever your admin page is
+    window.location.href = './admin.html';
   });
   adminControls.appendChild(adminBtn);
 }
 
-if(!currentUser){
+if (!currentUser) {
   const loc = window.location.origin + '/login.html' 
   window.location.href = loc;
-}
-
-if (currentUser && welcomeTitle) {
+} else if(welcomeTitle) {
   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
-} else {
-  Swal.fire('user not found not found');
 }
 
 document.querySelector('.submit-button')
@@ -45,7 +41,7 @@ document.querySelector('.submit-button')
     } 
       
     const messageObject = {
-      id: entry.length + 1,
+      id: crypto.randomUUID(),
       title: titleText,
       username: currentUser.username,
       name: currentUser.name,

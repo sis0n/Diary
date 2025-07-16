@@ -1,50 +1,78 @@
 import { getUsers } from './user.js';
 import { UserMessageEntries } from './data.js';
+import { currentUser } from './auth.js';
 
-document.querySelector('.submit-button')
-  .addEventListener('click', (event) => {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  if(!currentUser){
+    userNotFound();
+  } else {
+    const loc = window.location.origin  + '/diary.html'; 
+    window.location.href = loc;
+  }
+});
 
-    let matchedUser = null;
-    let foundUser = null;
+function userNotFound() {
+  document.querySelector('.submit-button')
+    .addEventListener('click', (event) => {
+      event.preventDefault();
 
-    const inputUsername = document.querySelector('.js-name-input').value;
-    const inputPass = document.querySelector('.js-password-input').value;
+      let matchedUser = null;
+      let foundUser = null;
 
-    const users = getUsers();
+      const inputUsername = document.querySelector('.js-name-input').value;
+      const inputPass = document.querySelector('.js-password-input').value;
 
-    users.forEach((user) => {
-      if(user.username === inputUsername && user.password === inputPass){
-        foundUser = user;
-      }
-    });
-    
-    if(!foundUser) {
-      users.forEach(user => {
-        if (user.username === inputUsername) {
-          matchedUser = user;
+      const users = getUsers();
+
+      users.forEach((user) => {
+        if(user.username === inputUsername && user.password === inputPass){
+          foundUser = user;
         }
       });
+      
+      if(!foundUser) {
+        users.forEach(user => {
+          if (user.username === inputUsername) {
+            matchedUser = user;
+          }
+        });
 
-      if (matchedUser) {
-        Swal.fire({
-          title: 'incorrect password',
-          text: `this account belongs to: ${matchedUser.name}`,
-          icon: 'warning'
-        });
-      } else {
-        Swal.fire({
-          title: 'user not found',
-          text: `no account with username "${inputUsername}" exists`,
-          icon: 'warning'
-        });
+        if (matchedUser) {
+          Swal.fire({
+            title: 'incorrect password',
+            text: `this account belongs to: ${matchedUser.name}`,
+            icon: 'warning'
+          });
+        } else {
+          Swal.fire({
+            title: 'user not found',
+            text: `no account with username "${inputUsername}" exists`,
+            icon: 'warning'
+          });
+        }
+        return;
       }
-      return;
-    }
 
-    if(foundUser.isAdmin) {
+      if(foundUser.isAdmin || foundUser.isSuperAdmin) {
+        Swal.fire({
+          title: `Welcome Admin ${foundUser.name}`,
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+
+        setTimeout(() => {
+          UserMessageEntries(foundUser);
+          localStorage.setItem('currentUser', JSON.stringify(foundUser));
+
+          const loc = window.location.origin  + '/admin.html'; 
+          window.location.href = loc;
+        }, 1600);
+        return;      
+      }
+
       Swal.fire({
-        title: `Welcome Admin ${foundUser.name}`,
+        title: `Welcome, ${foundUser.name}`,
         icon: 'success',
         timer: 1500,
         showConfirmButton: false
@@ -54,26 +82,9 @@ document.querySelector('.submit-button')
         UserMessageEntries(foundUser);
         localStorage.setItem('currentUser', JSON.stringify(foundUser));
 
-        const loc = window.location.origin  + '/admin.html'; 
+        const loc = window.location.origin  + '/diary.html'; 
         window.location.href = loc;
-      }, 1600);
-      return;      
-    }
-
-    Swal.fire({
-      title: `Welcome, ${foundUser.name}`,
-      icon: 'success',
-      timer: 1500,
-      showConfirmButton: false
+      }, 1000);
     });
-
-    setTimeout(() => {
-
-      UserMessageEntries(foundUser);
-      localStorage.setItem('currentUser', JSON.stringify(foundUser));
-
-      const loc = window.location.origin  + '/diary.html'; 
-      window.location.href = loc;
-    }, 1000);
-  });
+}
 
