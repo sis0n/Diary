@@ -4,7 +4,8 @@ export let users = Array.isArray(JSON.parse(localStorage.getItem('user'))) ? JSO
       name: "alwyn",
       username: "adrianoalwyn",
       password: "keirauy",
-      isSuperAdmin: true
+      isSuperAdmin: true,
+      isActive: true
     }];
 
 export function getUsers() {

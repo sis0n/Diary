@@ -14,6 +14,8 @@ function countUserEntries(username) {
 users.forEach((user) => {
   const entryCount = countUserEntries(user.username);
   const isDisabled = (user.isSuperAdmin || user.id === currentUser.id)  ? 'disabled' : '';
+  const buttonText = user.isActive === false ? 'Activate' : 'Deactivate';
+  const buttonValue = user.isActive === false ? 'activate' : 'deactivate';
 
   const row = document.createElement('tr');
   row.innerHTML = `
@@ -29,11 +31,29 @@ users.forEach((user) => {
       </select>
     </td>
     <td>
-      <button>Edit</button>
-      <button>Delete</button>
+      <button class="adminAction" data-user-id="${user.id}" value="${buttonValue}" ${isDisabled}>${buttonText}</button>
     </td>
   `;
   userTable.appendChild(row);
+
+  const actionBtn = row.querySelector('.adminAction');
+
+  actionBtn.addEventListener('click', (action) => {
+    const selectedUser = users.find(u => u.id === user.id);
+
+    selectedUser.isActive = !selectedUser.isActive;
+
+    if(!selectedUser.isActive) {
+      action.target.value = 'activate';
+      action.target.textContent = "Activate";
+    } else {
+      action.target.value = 'deactivate';
+      action.target.textContent = "Deactivate";
+    }
+
+    localStorage.setItem('user', JSON.stringify(users));
+  });
+
 });
 
 userTable.addEventListener('change', (e) => {
@@ -53,8 +73,6 @@ userTable.addEventListener('change', (e) => {
   }
 
   localStorage.setItem('user', JSON.stringify(users));
-
-  
 });
 
 document.querySelector('.logout-button')

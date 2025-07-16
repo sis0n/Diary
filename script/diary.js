@@ -8,7 +8,7 @@ const welcomeTitle = document.querySelector('.welcome-title');
 
 const adminControls = document.querySelector('.admin-controls');
 
-if (currentUser && currentUser.isAdmin && adminControls) {
+if (currentUser && currentUser.isAdmin && adminControls || currentUser.isSuperAdmin) {
   const adminBtn = document.createElement('button');
   adminBtn.classList.add('admin-button');
   adminBtn.textContent = 'Manage Users';

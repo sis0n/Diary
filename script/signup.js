@@ -80,7 +80,8 @@ function userNotFound() {
         username,
         password,
         isAdmin: false,
-        isSuperAdmin: false
+        isSuperAdmin: false,
+        isActive: true
       };
 
       addUser(newUser);
