@@ -2,6 +2,13 @@ import { getUsers } from "../script/user.js";
 import { entry } from "../script/data.js";
 import { currentUser } from "../script/auth.js";
 
+if (!currentUser) {
+  const loc = window.location.origin + 'Diary/login.html' 
+  window.location.href = loc;
+} else if(welcomeTitle) {
+  welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+}
+
 const userTable = document.querySelector('.user-table');
 const users = getUsers();
 
