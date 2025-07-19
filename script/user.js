@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
       id: crypto.randomUUID(),
       name: "alwyn",
       username: "adrianoalwyn",
-      password: "keirauy",
+      password: "superadmin",
       isSuperAdmin: true,
       isActive: true
     }];
