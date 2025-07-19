@@ -20,16 +20,7 @@ if (typeof window !== 'undefined') {
 
 
 export function getUsers() {
-  const raw = localStorage.getItem('user');
-
-  if (!raw) return [];
-
-  try {
-    return JSON.parse(raw);
-  } catch (error) {
-    console.error('Parsing users failed:', error);
-    return [];
-  }
+  return JSON.parse(localStorage.getItem('user')) || [];
 }
 
 export function addUser(newUser) {
