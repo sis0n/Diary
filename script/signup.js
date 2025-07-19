@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if(!currentUser){
     userNotFound();
   } else {
-    const loc = window.location.origin  + 'Diary/diary.html'; 
+    const loc = window.location.origin  + '/Diary/diary.html'; 
     window.location.href = loc;
   }
 });
@@ -89,7 +89,7 @@ function userNotFound() {
       });
 
       setTimeout(() => {
-        const loc = window.location.origin + 'Diary/login.html';
+        const loc = window.location.origin + '/Diary/login.html';
         window.location.href = loc;
       }, 1600);
     });
