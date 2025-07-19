@@ -3,12 +3,16 @@ import { getCurrentUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
-  if(!currentUser){
-    userNotFound();
-  } else {
-    const loc = window.location.origin  + '/diary.html'; 
+
+  const isSignupPage = window.location.pathname.includes('/signup.html');
+
+  if (currentUser && !isSignupPage) {
+    const loc = window.location.origin + '/diary.html';
     window.location.href = loc;
+    return;
   }
+
+  userNotFound();
 });
 
 function userNotFound() {
