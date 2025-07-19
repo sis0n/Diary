@@ -3,6 +3,7 @@ import { entry } from "../script/data.js";
 import { getCurrentUser } from "../script/auth.js";
 
 const currentUser = getCurrentUser();
+const welcomeTitle = document.querySelector('.welcome-title');
 
 if (!currentUser) {
   const loc = window.location.origin + '/login.html' 
