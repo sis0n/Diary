@@ -1,8 +1,9 @@
 import { getUsers } from './user.js';
 import { UserMessageEntries } from './data.js';
-import { currentUser } from './auth.js';
+import { getCurrentUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = getCurrentUser();
   if (currentUser) {
     const loc = window.location.origin + '/diary.html'; 
     window.location.href = loc;
