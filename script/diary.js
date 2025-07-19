@@ -1,10 +1,12 @@
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { entry } from './data.js';
-import { currentUser } from './auth.js';
+import { getCurrentUser } from './auth.js';
 
 const welcomeTitle = document.querySelector('.welcome-title');
 
 const adminControls = document.querySelector('.admin-controls');
+
+const currentUser = getCurrentUser();
 
 if (currentUser && currentUser.isAdmin && adminControls || currentUser.isSuperAdmin) {
   const adminBtn = document.createElement('button');

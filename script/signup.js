@@ -1,7 +1,8 @@
 import { getUsers, addUser } from './user.js';
-import { currentUser } from './auth.js';
+import { getCurrentUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = getCurrentUser();
   if(!currentUser){
     userNotFound();
   } else {

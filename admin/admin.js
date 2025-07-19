@@ -1,6 +1,8 @@
 import { getUsers } from "../script/user.js";
 import { entry } from "../script/data.js";
-import { currentUser } from "../script/auth.js";
+import { getCurrentUser } from "../script/auth.js";
+
+const currentUser = getCurrentUser();
 
 if (!currentUser) {
   const loc = window.location.origin + '/login.html' 
