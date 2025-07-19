@@ -1,18 +1,12 @@
-let users = [];
-
-if (typeof window !== "undefined") {
-  const stored = localStorage.getItem("user");
-
-  users = Array.isArray(JSON.parse(stored)) ? JSON.parse(stored)
-    : [{
-        id: crypto.randomUUID(),
-        name: "alwyn",
-        username: "adrianoalwyn",
-        password: "keirauy",
-        isSuperAdmin: true,
-        isActive: true
-      }];
-}
+export let users = Array.isArray(JSON.parse(localStorage.getItem('user'))) ? JSON.parse(localStorage.getItem('user'))
+  : [{
+      id: crypto.randomUUID(),
+      name: "alwyn",
+      username: "adrianoalwyn",
+      password: "keirauy",
+      isSuperAdmin: true,
+      isActive: true
+    }];
 
 export function getUsers() {
   const raw = localStorage.getItem('user');

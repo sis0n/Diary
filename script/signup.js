@@ -67,7 +67,6 @@ function userNotFound() {
         return;
       }
 
-      // validation for all passed created user
       const newUser = {
         id: crypto.randomUUID(),
         name,
