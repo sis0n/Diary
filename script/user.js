@@ -1,5 +1,12 @@
-export let users = Array.isArray(JSON.parse(localStorage.getItem('user'))) ? JSON.parse(localStorage.getItem('user'))
-  : [{
+let users = [];
+
+if (typeof window !== 'undefined') {
+  const stored = localStorage.getItem('user');
+
+  if (stored) {
+    users = JSON.parse(stored);
+  } else {
+    users = [{
       id: crypto.randomUUID(),
       name: "alwyn",
       username: "adrianoalwyn",
@@ -7,6 +14,10 @@ export let users = Array.isArray(JSON.parse(localStorage.getItem('user'))) ? JSO
       isSuperAdmin: true,
       isActive: true
     }];
+    localStorage.setItem('user', JSON.stringify(users));
+  }
+}
+
 
 export function getUsers() {
   const raw = localStorage.getItem('user');
