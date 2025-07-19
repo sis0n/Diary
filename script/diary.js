@@ -2,8 +2,6 @@ import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { entry } from './data.js';
 import { currentUser } from './auth.js';
 
-
-
 const welcomeTitle = document.querySelector('.welcome-title');
 
 const adminControls = document.querySelector('.admin-controls');
