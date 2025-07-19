@@ -78,6 +78,6 @@ userTable.addEventListener('change', (e) => {
 document.querySelector('.logout-button')
   .addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    const loc = window.location.origin + '/login.html';
+    const loc = window.location.origin + 'Diary/login.html';
     window.location.href = loc;
   });

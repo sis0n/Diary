@@ -13,13 +13,14 @@ if (currentUser && currentUser.isAdmin && adminControls || currentUser.isSuperAd
   adminBtn.classList.add('admin-button');
   adminBtn.textContent = 'Manage Users';
   adminBtn.addEventListener('click', () => {
-    window.location.href = './admin.html';
+    const loc = window.location.origin  + 'Diary/admin.html'; 
+    window.location.href = loc;
   });
   adminControls.appendChild(adminBtn);
 }
 
 if (!currentUser) {
-  const loc = window.location.origin + '/login.html' 
+  const loc = window.location.origin + 'Diary/login.html' 
   window.location.href = loc;
 } else if(welcomeTitle) {
   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
@@ -100,6 +101,6 @@ displayMessage();
 document.querySelector('.logout-button')
   .addEventListener('click', () => {
     localStorage.removeItem('currentUser');
-    const loc = window.location.origin + '/login.html'
+    const loc = window.location.origin + 'Diary/login.html'
     window.location.href = loc;
   });
