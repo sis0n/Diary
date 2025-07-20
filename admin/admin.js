@@ -4,6 +4,7 @@ import { getCurrentUser } from "../script/auth.js";
 
 const currentUser = getCurrentUser();
 const welcomeTitle = document.querySelector('.welcome-title');
+const mainSuperAdmin = "40008e6f-2b92-4597-9619-4565c31a8b76";
 
 if (!currentUser) {
   const loc = window.location.origin + '/login.html' 
@@ -23,9 +24,18 @@ function countUserEntries(username) {
 
 users.forEach((user) => {
   const entryCount = countUserEntries(user.username);
-  const isDisabled = (user.isSuperAdmin || user.id === currentUser.id)  ? 'disabled' : '';
+  // const isDisabled = (user.isSuperAdmin || user.id === currentUser.id)  ? 'disabled' : '';
   const buttonText = user.isActive === false ? 'Activate' : 'Deactivate';
   const buttonValue = user.isActive === false ? 'activate' : 'deactivate';
+
+  
+  if (user.id === mainSuperAdmin && currentUser.id !== mainSuperAdmin) {
+    // If the user being rendered is the MSA, and the one logged in is NOT the MSA, disable controls
+    isDisabled = 'disabled';
+  } else if (user.id === currentUser.id) {
+    // You shouldn't be able to edit yourself either
+    isDisabled = 'disabled';
+}
 
   const row = document.createElement('tr');
   row.innerHTML = `
@@ -60,6 +70,15 @@ users.forEach((user) => {
       action.target.value = 'deactivate';
       action.target.textContent = "Deactivate";
     }
+    
+    if (user.id === mainSuperAdmin && currentUser.id !== mainSuperAdmin) {
+      Swal.fire({
+        title: 'Access Denied',
+        text: 'You cannot activate or deactivate the main super admin.',
+        icon: 'error'
+      });
+      return;
+    }
 
     localStorage.setItem('user', JSON.stringify(users));
   });
@@ -76,13 +95,24 @@ userTable.addEventListener('change', (e) => {
   selectedUser.isAdmin = false;
   selectedUser.isSuperAdmin = false;
 
-  if (newRole === 'admin') {
+  if(newRole === 'admin') {
     selectedUser.isAdmin = true;
   } else if (newRole === 'superadmin') {
     selectedUser.isSuperAdmin = true;
   }
 
+  if(userId === mainSuperAdmin && currentUser.id !== mainSuperAdmin) {
+    Swal.fire({
+      title: 'Access Denied',
+      text: 'You cannot modify the main super admin.',
+      icon: 'error'
+    });
+    return;
+  }
+
   localStorage.setItem('user', JSON.stringify(users));
+
+  
 });
 
 document.querySelector('.logout-button')
