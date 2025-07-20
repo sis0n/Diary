@@ -30,10 +30,8 @@ users.forEach((user) => {
 
   
   if (user.id === mainSuperAdmin && currentUser.id !== mainSuperAdmin) {
-    // If the user being rendered is the MSA, and the one logged in is NOT the MSA, disable controls
     isDisabled = 'disabled';
   } else if (user.id === currentUser.id) {
-    // You shouldn't be able to edit yourself either
     isDisabled = 'disabled';
 }
 
