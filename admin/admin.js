@@ -28,6 +28,8 @@ users.forEach((user) => {
   const buttonText = user.isActive === false ? 'Activate' : 'Deactivate';
   const buttonValue = user.isActive === false ? 'activate' : 'deactivate';
 
+  let isDisabled = '';
+
   
   if (user.id === mainSuperAdmin && currentUser.id !== mainSuperAdmin) {
     isDisabled = 'disabled';
@@ -107,10 +109,7 @@ userTable.addEventListener('change', (e) => {
     });
     return;
   }
-
   localStorage.setItem('user', JSON.stringify(users));
-
-  
 });
 
 document.querySelector('.logout-button')
