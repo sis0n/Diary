@@ -25,9 +25,7 @@ function userNotFound() {
     const users = getUsers();
 
     if (
-      !nameValidation(name) ||
-      !usernameValidation(username, users) ||
-      !passwordValidation(password, confirmPassword)
+      !nameValidation(name) || !usernameValidation(username, users) || !passwordValidation(password, confirmPassword)
     ) {
       return;
     }
