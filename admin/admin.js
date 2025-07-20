@@ -23,7 +23,7 @@ function countUserEntries(username) {
 
 users.forEach((user) => {
   const entryCount = countUserEntries(user.username);
-  const isDisabled = (user.isSuperAdmin || user.id === currentUser.id)  ? 'disabled' : '';
+  const isDisabled = (user.isAdmin || user.id === currentUser.id)  ? 'disabled' : '';
   const buttonText = user.isActive === false ? 'Activate' : 'Deactivate';
   const buttonValue = user.isActive === false ? 'activate' : 'deactivate';
 
