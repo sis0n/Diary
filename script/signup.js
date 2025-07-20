@@ -3,12 +3,10 @@ import { getCurrentUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
-
   const isSignupPage = window.location.pathname.includes('/signup.html');
 
   if (currentUser && !isSignupPage) {
-    const loc = window.location.origin + '/diary.html';
-    window.location.href = loc;
+    window.location.href = `${window.location.origin}/diary.html`;
     return;
   }
 
@@ -16,175 +14,142 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function userNotFound() {
-  document.getElementById('signup-form')
-    .addEventListener('submit', (event) => {
-      event.preventDefault();
+  document.getElementById('signup-form').addEventListener('submit', (event) => {
+    event.preventDefault();
 
-      const name = document.querySelector('.js-name-input').value.trim();
-      const username = document.querySelector('.js-username-input').value.trim();
-      const password = document.querySelector('.js-password-input').value;
-      const confirmPassword = document.querySelector('.js-confirm-password-input').value;
+    const name = document.querySelector('.js-name-input').value.trim();
+    const username = document.querySelector('.js-username-input').value.trim();
+    const password = document.querySelector('.js-password-input').value;
+    const confirmPassword = document.querySelector('.js-confirm-password-input').value;
 
-      const alphaerr = 'must only contain letters !';
-      const lengtherr = 'must be between 1 and 10 letters'
+    const users = getUsers();
 
-      const usernameLength = username.length;
+    // Validate inputs
+    if (
+      !nameValidation(name) ||
+      !usernameValidation(username, users) ||
+      !passwordValidation(password, confirmPassword)
+    ) {
+      return; // Stop if any validation fails
+    }
 
-
-      const users = getUsers();
-      
-      passwordValidation(password, confirmPassword);
-      usernameValidation(username, usernameLength, users)
-      nameValidation(name);
-      
-      //validation for characters inputed
-
-      // validation for empty fields
-      if (!name || !username || !password || !confirmPassword) {
-        Swal.fire({
-          title: 'Missing Fields',
-          text: 'All fields are required!',
-          icon: 'warning'
-        });
-        return;
-      }
-
-      // validation for name and username should be different
-      if (name.toLowerCase() === username.toLowerCase()) {
-        Swal.fire({
-          title: 'Invalid Entry',
-          text: 'Name and Username cannot be the same.',
-          icon: 'warning'
-        });
-        return;
-      }
-
-
-      // validation for username already exists
-      const usernameTaken = users.some(user => user.username.toLowerCase() === username.toLowerCase());
-
-      if (usernameTaken) {
-        Swal.fire({
-          title: 'Username Taken',
-          text: `The username "${username}" is already in use.`,
-          icon: 'error'
-        });
-        return;
-      }
-
-      const newUser = {
-        id: crypto.randomUUID(),
-        name,
-        username,
-        password,
-        isAdmin: false,
-        isSuperAdmin: false,
-        isActive: true
-      };
-
-      addUser(newUser);
-
+    // Check if name and username are the same
+    if (name.toLowerCase() === username.toLowerCase()) {
       Swal.fire({
-        title: 'Account Created!',
-        text: 'Redirecting to login',
-        icon: 'success',
-        timer: 1500,
-        showConfirmButton: false
+        title: 'Invalid Entry',
+        text: 'Name and Username cannot be the same.',
+        icon: 'warning'
       });
+      return;
+    }
 
-      setTimeout(() => {
-        const loc = window.location.origin + '/login.html';
-        window.location.href = loc;
-      }, 1600);
+    const newUser = {
+      id: crypto.randomUUID(),
+      name,
+      username,
+      password,
+      isAdmin: false,
+      isSuperAdmin: false,
+      isActive: true
+    };
+
+    addUser(newUser);
+
+    Swal.fire({
+      title: 'Account Created!',
+      text: 'Redirecting to login',
+      icon: 'success',
+      timer: 1500,
+      showConfirmButton: false
     });
 
-    
+    setTimeout(() => {
+      window.location.href = `${window.location.origin}/login.html`;
+    }, 1600);
+  });
 }
 
 function passwordValidation(password, confirmPassword) {
+  if (!password || !confirmPassword) {
+    Swal.fire({
+      title: 'Missing Fields',
+      text: 'All fields are required!',
+      icon: 'warning'
+    });
+    return false;
+  }
+
   if (password !== confirmPassword) {
     Swal.fire({
       title: 'Password Mismatch',
       text: 'Passwords do not match.',
       icon: 'warning'
     });
-    return;
+    return false;
   }
 
-  // if(password === password.toLowerCase()){
-  //   Swal.fire({
-  //     title: 'Password error',
-  //     text: 'pass',
-  //     icon: 'warning'
-  //   });
-  //   return;
-  // }
+  return true;
 }
 
-    
-
 function nameValidation(name) {
-  const nameLength = name.length;
-  const hasNumber = /\d/.test(name);
-
-  if(hasNumber) {
-    Swal.fire({
-      title: 'ANO YAN!',
-      text: `${alphaerr}`,
-      icon: 'warning'
-    });
-    return;
-  } 
-
   if (!name) {
     Swal.fire({
       title: 'Missing Fields',
       text: 'All fields are required!',
       icon: 'warning'
     });
-    return;
+    return false;
   }
 
-  if(nameLength <= 10) {
+  if (/\d/.test(name)) {
     Swal.fire({
-      title: 'too short',
-      text: 'must be between 1 and 10 letters',
+      title: 'Invalid Name',
+      text: 'Name must only contain letters!',
       icon: 'warning'
     });
-    return;
+    return false;
   }
 
+  if (name.length > 10) {
+    Swal.fire({
+      title: 'Too Long',
+      text: 'Name must be between 1 and 10 letters',
+      icon: 'warning'
+    });
+    return false;
+  }
+
+  return true;
 }
 
-function usernameValidation(username, usernameLength, users) {
-  const usernameTaken = users.some(user => user.username.toLowerCase() === username.toLowerCase());
-
-
-  if (usernameTaken) {
-    Swal.fire({
-      title: 'Username Taken',
-      text: `The username "${username}" is already in use.`,
-      icon: 'error'
-    });
-    return;
-  }
-  if(usernameLength <= 8) {
-    Swal.fire({
-      title: 'too short',
-      text: 'username should be 8 char and above',
-      icon: 'warning'
-    });
-    return;
-  }
-
+function usernameValidation(username, users) {
   if (!username) {
     Swal.fire({
       title: 'Missing Fields',
       text: 'All fields are required!',
       icon: 'warning'
     });
-    return;
+    return false;
   }
-}
 
-  
+  if (username.length < 8) {
+    Swal.fire({
+      title: 'Too Short',
+      text: 'Username should be 8 characters or more.',
+      icon: 'warning'
+    });
+    return false;
+  }
+
+  const usernameTaken = users.some(user => user.username.toLowerCase() === username.toLowerCase());
+  if (usernameTaken) {
+    Swal.fire({
+      title: 'Username Taken',
+      text: `The username "${username}" is already in use.`,
+      icon: 'error'
+    });
+    return false;
+  }
+
+  return true;
+}
