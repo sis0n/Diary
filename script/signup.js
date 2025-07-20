@@ -24,16 +24,14 @@ function userNotFound() {
 
     const users = getUsers();
 
-    // Validate inputs
     if (
       !nameValidation(name) ||
       !usernameValidation(username, users) ||
       !passwordValidation(password, confirmPassword)
     ) {
-      return; // Stop if any validation fails
+      return;
     }
 
-    // Check if name and username are the same
     if (name.toLowerCase() === username.toLowerCase()) {
       Swal.fire({
         title: 'Invalid Entry',
