@@ -12,7 +12,11 @@ if (!currentUser) {
 } else if(!currentUser.isAdmin && !currentUser.isSuperAdmin){
   const loc = window.location.origin + '/diary.html' 
   window.location.href = loc;
-} else if(welcomeTitle) {
+} else{
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('admin-content').style.display = 'block';
+}
+if(welcomeTitle) {
   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
 }
 
