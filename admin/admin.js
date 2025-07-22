@@ -4,7 +4,7 @@ import { getCurrentUser } from "../script/auth.js";
 
 const currentUser = getCurrentUser();
 const welcomeTitle = document.querySelector('.welcome-title');
-const mainSuperAdmin = "40008e6f-2b92-4597-9619-4565c31a8b76";
+const mainSuperAdmin = "6398c7f7-0afa-4a36-9457-2fcd2b596e3e";
 
 if (!currentUser){
   const loc = window.location.origin + '/login.html' 
