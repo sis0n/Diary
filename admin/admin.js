@@ -10,7 +10,7 @@ if (!currentUser) {
   const loc = window.location.origin + '/login.html' 
   window.location.href = loc;
 } else if(!currentUser.isAdmin && !currentUser.isSuperAdmin){
-  const loc = window.location.origin + '/login.html' 
+  const loc = window.location.origin + '/diary.html' 
   window.location.href = loc;
 } else if(welcomeTitle) {
   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
