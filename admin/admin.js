@@ -6,13 +6,14 @@ const currentUser = getCurrentUser();
 const welcomeTitle = document.querySelector('.welcome-title');
 const mainSuperAdmin = "40008e6f-2b92-4597-9619-4565c31a8b76";
 
-if (!currentUser) {
+if (!currentUser){
   const loc = window.location.origin + '/login.html' 
   window.location.href = loc;
 } else if(!currentUser.isAdmin && !currentUser.isSuperAdmin){
   const loc = window.location.origin + '/diary.html' 
   window.location.href = loc;
 } else{
+  document.body.style.display = 'block';
   document.getElementById('loader').style.display = 'none';
   document.getElementById('admin-content').style.display = 'block';
 }
