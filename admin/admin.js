@@ -7,11 +7,8 @@ const welcomeTitle = document.querySelector('.welcome-title');
 const mainSuperAdmin = "40008e6f-2b92-4597-9619-4565c31a8b76";
 
 if(!currentUser.isAdmin && !currentUser.isSuperAdmin ){
-  Swal.fire({
-    title: 'Access Denied',
-    text: 'Only admins and super admins can access this area.',
-    icon: 'error'
-  });
+  const loc = window.location.origin + '/login.html' 
+  window.location.href = loc;
 }
 
 if (!currentUser) {
