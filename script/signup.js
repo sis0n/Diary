@@ -3,15 +3,14 @@ import { getCurrentUser } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
-  const isSignupPage = window.location.pathname.includes('/signup.html');
 
-  if (currentUser && !isSignupPage) {
+  if (currentUser) {
     window.location.href = `${window.location.origin}/diary.html`;
-    return;
+  } else {
+    userNotFound();
   }
-
-  userNotFound();
 });
+
 
 function userNotFound() {
   document.getElementById('signup-form').addEventListener('submit', (event) => {
