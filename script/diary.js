@@ -8,16 +8,43 @@ const adminControls = document.querySelector('.admin-controls');
 
 const currentUser = getCurrentUser();
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   if (!currentUser){
+//     setTimeout(() => {
+//       document.body.style.display = 'block';
+//       document.getElementById('loader').style.display = 'none';
+//       document.getElementById('admin-content').style.display = 'block';
+//       userNotFound();
+//     }, 2000);
+//   } else {
+//     window.history.back();
+//   }
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
-  if (!currentUser){
+  if (!currentUser) {
     setTimeout(() => {
-      document.body.style.display = 'block';
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('admin-content').style.display = 'block';
-      userNotFound();
-    }, 2000);
+      const referrer = document.referrer;
+
+      if (window.history.length > 1) {
+        window.history.back();
+      }
+      else if (referrer && referrer !== window.location.href) {
+        window.location.href = referrer;
+      }
+      else {
+        window.location.href = window.location.origin + '/login.html';
+      }
+    }, 1000);
   } else {
-    window.history.back();
+    document.body.style.display = 'block';
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+
+    // You can show welcome title here if needed
+    if (welcomeTitle) {
+      welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+    }
   }
 });
 
