@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('admin-content').style.display = 'block';
 
-    if (welcomeTitle) {
-      welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
-    }
+  }
+  if (welcomeTitle) {
+    welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
   }
 });
 
