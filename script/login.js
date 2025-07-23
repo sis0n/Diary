@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('loader').style.display = 'none';
       document.getElementById('admin-content').style.display = 'block';
       userNotFound();
-    }, 3000);
+    }, 2000);
   } else {
     window.location.href = window.location.origin + '/diary.html';
   }
