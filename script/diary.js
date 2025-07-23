@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.back();
       }
       else if (referrer && referrer !== window.location.href) {
-        window.location.href = referrer;
+        setTimeout(() => {
+          window.location.href = 'diary.html';
+        }, 100);
       }
       else {
         window.location.href = window.location.origin + '/login.html';
@@ -41,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('admin-content').style.display = 'block';
 
-  }
-  if (welcomeTitle) {
-    welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+    if (welcomeTitle) {
+      welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+    }
   }
 });
 
