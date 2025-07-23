@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
 
   if (!currentUser){
-    document.body.style.display = 'block';
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('admin-content').style.display = 'block';
-    userNotFound();
+    setTimeout(() => {
+      document.body.style.display = 'block';
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('admin-content').style.display = 'block';
+      userNotFound();
+    }, 3000);
   } else {
     window.location.href = window.location.origin + '/diary.html';
   }
