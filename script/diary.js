@@ -22,11 +22,11 @@ const currentUser = getCurrentUser();
 // });
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (!currentUser) {
+  if(!currentUser) {
     setTimeout(() => {
       const referrer = document.referrer;
 
-      if (window.history.length > 1) {
+      if(window.history.length > 1) {
         window.history.back();
       }
       else if (referrer && referrer !== window.location.href) {
