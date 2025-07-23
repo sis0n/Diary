@@ -8,6 +8,19 @@ const adminControls = document.querySelector('.admin-controls');
 
 const currentUser = getCurrentUser();
 
+document.addEventListener('DOMContentLoaded', () => {
+  if (!currentUser){
+    setTimeout(() => {
+      document.body.style.display = 'block';
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('admin-content').style.display = 'block';
+      userNotFound();
+    }, 3000);
+  } else {
+    window.location.href = window.location.origin + '/diary.html';
+  }
+});
+
 if (currentUser && currentUser.isAdmin && adminControls || currentUser.isSuperAdmin) {
   const adminBtn = document.createElement('button');
   adminBtn.classList.add('admin-button');
@@ -19,12 +32,12 @@ if (currentUser && currentUser.isAdmin && adminControls || currentUser.isSuperAd
   adminControls.appendChild(adminBtn);
 }
 
-if (!currentUser) {
-  const loc = window.location.origin + '/login.html' 
-  window.location.href = loc;
-} else if(welcomeTitle) {
-  welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
-}
+// if (!currentUser) {
+//   const loc = window.location.origin + '/login.html' 
+//   window.location.href = loc;
+// } else if(welcomeTitle) {
+//   welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
+// }
 
 document.querySelector('.submit-button')
   .addEventListener('click', () => {
