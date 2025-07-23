@@ -17,12 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
 
   if (!currentUser){
-    setTimeout(() => {
-      document.body.style.display = 'block';
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('admin-content').style.display = 'block';
-      userNotFound();
-    }, 3000);
+    document.body.style.display = 'block';
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    userNotFound();
   } else {
     window.location.href = window.location.origin + '/diary.html';
   }
