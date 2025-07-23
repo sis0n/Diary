@@ -4,13 +4,15 @@ import { getCurrentUser } from './auth.js';
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
 
-  if (currentUser) {
-    window.location.href = `${window.location.origin}/diary.html`;
-  } else {
+  if (!currentUser){
+    document.body.style.display = 'block';
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
     userNotFound();
+  } else {
+    window.location.href = window.location.origin + '/diary.html';
   }
 });
-
 
 function userNotFound() {
   document.getElementById('signup-form').addEventListener('submit', (event) => {
