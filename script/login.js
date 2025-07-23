@@ -17,9 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
 
   if (!currentUser){
-    document.body.style.display = 'block';
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('admin-content').style.display = 'block';
+    setTimeout(() => {
+      document.body.style.display = 'block';
+      document.getElementById('loader').style.display = 'none';
+      document.getElementById('admin-content').style.display = 'block';
+    }, 3000);
     userNotFound();
   } else {
     window.location.href = window.location.origin + '/diary.html';
