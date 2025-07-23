@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loader').style.display = 'none';
     document.getElementById('admin-content').style.display = 'block';
 
-    // You can show welcome title here if needed
     if (welcomeTitle) {
       welcomeTitle.innerHTML = `Hi, ${currentUser.name}`;
     }
