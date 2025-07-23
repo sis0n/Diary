@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       userNotFound();
     }, 2000);
   } else {
-    window.location.href = window.location.origin + '/diary.html';
+    window.history.back();
   }
 });
 
