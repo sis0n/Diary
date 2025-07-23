@@ -1,5 +1,6 @@
 export const currentUser = JSON.parse(localStorage.getItem('currentUser'));
 
 export function getCurrentUser() {
-  return JSON.parse(localStorage.getItem('currentUser'));
+  const userData = localStorage.getItem('currentUser');
+  return userData ? JSON.parse(userData) : null;
 }
