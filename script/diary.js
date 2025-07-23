@@ -22,6 +22,7 @@ const currentUser = getCurrentUser();
 // });
 
 document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = getCurrentUser();
   if(!currentUser) {
     setTimeout(() => {
       const referrer = document.referrer;
