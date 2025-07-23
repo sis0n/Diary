@@ -2,11 +2,29 @@ import { getUsers } from './user.js';
 import { UserMessageEntries } from './data.js';
 import { getCurrentUser } from './auth.js';
 
+// document.addEventListener('DOMContentLoaded', () => {
+//   const currentUser = getCurrentUser();
+
+//   if (currentUser) {
+//     const loc = window.location.origin + '/diary.html' 
+//     window.location.href = loc;
+//   } else {
+//     userNotFound();
+//   }
+// });
+
 document.addEventListener('DOMContentLoaded', () => {
   const currentUser = getCurrentUser();
 
-  if (currentUser) {
-    window.location.href = `${window.location.origin}/diary.html`;
+  if (!currentUser){
+    document.body.style.display = 'block';
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('admin-content').style.display = 'block';
+    const loc = window.location.origin + '/login.html' 
+    window.location.href = loc;
+  } else if(currentUser) {
+    const loc = window.location.origin + '/diary.html' 
+    window.location.href = loc;
   } else {
     userNotFound();
   }

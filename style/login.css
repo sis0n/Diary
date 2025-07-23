@@ -73,7 +73,7 @@ body {
   font-weight: 600;
   margin-top: 10px;
   transition: background-color 0.3s ease;
-  user-select: none;
+  -webkit-user-select: none;
 }
 
 .js-login-form .submit-button:hover,
