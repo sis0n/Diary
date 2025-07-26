@@ -50,52 +50,7 @@ Built to help users reflect, track moods, or preserve memories over time, it pro
 
 ---
 
-## 🛠️ Getting Started
 
-### Prerequisites
-
-- Node.js (v14+)
-- npm or Yarn
-- MongoDB (local or Atlas)
-- (Optional) `.env` file for environment configuration
-
-### Installation
-
-```bash
-git clone https://github.com/sis0n/Diary.git
-cd Diary
-npm install
-Environment Setup
-Create a .env file in the root directory with:
-
-env
-Copy
-Edit
-PORT=3000
-MONGO_URI=your-mongodb-connection-string
-SESSION_SECRET=your-session-secret
-Running the App
-bash
-Copy
-Edit
-npm run dev
-Your app should now be running at http://localhost:3000.
-
-🧑‍💻 Usage
-Register and log in to create secure journal entries
-
-Add, edit, or delete entries from your diary
-
-Choose which entries remain private and which are shared
-
-Optional features such as tagging or search (customize based on your app)
-
-🔍 Screenshots
-(Replace placeholders with actual image paths when ready)
-
-scss
-Copy
-Edit
 ![Diary Homepage](./assets/screenshots/homepage.png)
 ![New Entry Form](./assets/screenshots/new-entry.png)
 ✅ Features
@@ -143,7 +98,3 @@ Distributed under the MIT License. See the LICENSE file for details.
 📬 Contact
 Author: sis0n
 Feel free to reach out via GitHub issues or discussions!
-
-yaml
-Copy
-Edit
